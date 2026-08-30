@@ -6,14 +6,14 @@ echo "🚀 Starting Full-Stack Dev Environment Setup"
 echo "=================================================="
 
 # OS Detection
-if [ -f /etc/manjaro-release ]; then
-    DISTRO="Manjaro"
+if [ -f /etc/manjaro-release ] || [ -f /etc/arch-release ]; then
+    DISTRO="Arch"
 else
     DISTRO="Linux"
 fi
 
 # 1. Native Packages & Tools
-if [ "$DISTRO" == "Manjaro" ]; then
+if [ "$DISTRO" == "Arch" ]; then
     echo "📦 Updating Pacman & installing core packages..."
     sudo pacman -Syu --noconfirm
     sudo pacman -S --needed --noconfirm \
@@ -58,7 +58,7 @@ if command -v nvm &> /dev/null; then
     echo "⚡ Provisioning Node.js LTS and web CLI tools..."
     nvm install --lts
     nvm use --lts
-    npm install -g pnpm yarn typescript ts-node prisma  wrangler @angular/cli
+    npm install -g pnpm yarn typescript ts-node prisma wrangler @angular/cli
 fi
 
 # 4. Python Backend Environment (FastAPI)
